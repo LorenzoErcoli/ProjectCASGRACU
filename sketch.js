@@ -5,7 +5,7 @@ var w_point = 40
 
 var ang = 0
 
-var speed = 0.2
+var speed =1.5
 let videoElement;
 
 function setup() {
@@ -33,6 +33,8 @@ function setup() {
 
 function draw() {
 
+	let sc = second();
+	console.log(sc)
 	
 	var w = window.innerWidth;
 	var h = window.innerHeight;
