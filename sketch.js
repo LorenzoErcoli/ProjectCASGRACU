@@ -225,7 +225,12 @@ function indexPoint(){
 
 		stroke(0,255,0)
 		strokeWeight(2)
-		fill(0,0,255)
+
+		if(path_stz[i] == "stz1"){
+			fill(255, 204, 0)
+		}else{
+			fill(0,0,255)
+		}
 		ellipse(pn[0],pn[1],w_print_index_point,w_print_index_point);
 	}
 
