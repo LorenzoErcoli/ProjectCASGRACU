@@ -6,7 +6,10 @@ const RAND = (min, max) => Math.random() * (max - min) + min //d3.randomUniform
 
 let W, H, polygons, voronoi, positions, velocities, colors;
 
-function setup() {
+
+
+
+function setup_Vornoi() {
   ctx = canvas.getContext("2d");
   [W, H] = [windowWidth, windowHeight];
   fill(255, 204, 0);
@@ -14,9 +17,6 @@ function setup() {
 
   //frameRate(1000);
 
-
-  stroke(0, 0, 0);
-  strokeWeight(10);
   //noStroke()
 
   positions = d3.range(NUM).map(_ => Float64Array.from({length: 2}, (_, i) => Math.random() * (i & 1 ? H : W)))
@@ -36,7 +36,7 @@ function setup() {
 }
 
 
-function draw() {
+function draw_Vornoi() {
   //background('#666')
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   
@@ -74,6 +74,8 @@ function draw() {
     pop()
     
     // RENDER (site)
+    stroke(0, 0, 0);
+    strokeWeight(10);
     point(pos[0], pos[1])
     
   }
