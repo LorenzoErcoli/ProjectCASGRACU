@@ -4,12 +4,12 @@
 var dmr = 400;
 var w_point = 40
 
-var w_index_point = 10
-var add_wPoint = 8
+var w_index_point = 12
+var add_wPoint = 12
 
 var ang = 0
 
-var speed = 1
+var speed = 0.5
 let videoElement;
 
 var movement = 2
@@ -223,17 +223,20 @@ function indexPoint(){
 		w_total_index_point = w_index_point + add_wPoint*n_pathStz;
 		w_print_index_point = w_total_index_point - add_wPoint*i
 
-		stroke(0,255,0)
-		strokeWeight(2)
+		strokeWeight(5)
 
 		if(path_stz[i] == "stz1"){
-			fill(255, 204, 0)
+			stroke(255, 204, 0)
+		}else if(path_stz[i] == "stz2"){
+			stroke(255,0,0)
+		}else if(path_stz[i] == "stz3"){
+			stroke(255,255,0)
 		}else{
-			fill(0,0,255)
+			stroke(255,0,255)
 		}
 		ellipse(pn[0],pn[1],w_print_index_point,w_print_index_point)
-		fill(0,0,255)
-		ellipse(pn[0],pn[1],w_index_point,w_index_point);
+		// fill(0,0,255)
+		// ellipse(pn[0],pn[1],w_index_point,w_index_point);
 	}
 
 }
