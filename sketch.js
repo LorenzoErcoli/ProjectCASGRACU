@@ -3,12 +3,17 @@
 var d = 400;
 var w_point = 40
 
+var w_index_point = 10
+var w_sing_index_point 
+var add_wPoint = 2
 var ang = 0
 
-var speed = 2
+var speed = 1
 let videoElement;
 
 var movement = 2
+
+path_stz = []
 
 function setup() {
 
@@ -69,6 +74,8 @@ function draw() {
 
 	fill(0,0,255)
 	directionPoint()
+	stateStz()
+	indexPoint()
 
 
 	ang = ang + speed
@@ -76,6 +83,10 @@ function draw() {
 		ang = 0
 	}
 }
+
+
+
+
 
 
 function directionPoint(){
@@ -92,14 +103,19 @@ function directionPoint(){
 		}
 
 	pn = [parseInt(P0[0]+Pi_x),parseInt(P0[1]+Pi_y)]
-	ellipse(pn[0],pn[1],w_point,w_point);
+
+}
 
 
-	///STANZA 1///
+
+
+
+function stateStz(){
+		///STANZA 1///
 
 	if (pn[1] == p1[1]){
-		console.log("p1")
-		console.log(ang)
+		// console.log("p1")
+		// console.log(ang)
 		movement = Math.floor(Math.random() * 3) + 1
 		if(movement == 1){
 			ang = 270
@@ -109,25 +125,27 @@ function directionPoint(){
 		}
 
 		form_stz = "stz1"
+		path_stz.push(form_stz);
 	}
 
 	///STANZA 2///
 
 	if (pn[0] == p2[0]){
-		console.log("p2")
-		console.log(ang)
+		// console.log("p2")
+		// console.log(ang)
 		movement = Math.floor(Math.random() * 3) + 1
 		ang = 0
 
 
 		form_stz = "stz2"
+		path_stz.push("stz2");
 	}
 
 	///STANZA 3///
 
 	if (pn[1] == p3[1]){
-		console.log("p3")
-		console.log(ang)
+		// console.log("p3")
+		// console.log(ang)
 		movement = Math.floor(Math.random() * 3) + 1
 		if(movement == 1){
 			ang = 90
@@ -136,23 +154,40 @@ function directionPoint(){
 		}
 
 		form_stz = "stz3"
+		path_stz.push(form_stz);
 	}
 
 	///STANZA 4///
 
 	if (pn[0] == p4[0]){
-		console.log("p4")
-		console.log(ang)
+		// console.log("p4")
+		// console.log(ang)
 		movement = Math.floor(Math.random() * 3) + 1
 		ang = 180
 
 		form_stz = "stz4"
+		path_stz.push(form_stz);
 	}
-
-
-
-
 }
+
+
+
+
+function rotClock(ang){
+
+	Pi_x = parseInt(d/2 * cos(radians(ang)))
+	Pi_y = parseInt(d/2 * sin(radians(ang)))
+}
+
+
+
+function rotAnClock(ang){
+	ang = ang + 90
+	Pi_x = parseInt(d/2 * sin(radians(ang)))
+	Pi_y = parseInt(d/2 * cos(radians(ang)))
+}
+
+
 
 function lineMove(){
 
@@ -174,15 +209,19 @@ function lineMove(){
 
 
 
-function rotClock(ang){
+function indexPoint(){
 
-	Pi_x = parseInt(d/2 * cos(radians(ang)))
-	Pi_y = parseInt(d/2 * sin(radians(ang)))
+	n_pathStz = path_stz.length
+
+	for(i=0; i <n_pathStz; i++){
+		w_sing_index_point = w_index_point + add_wPoint*i
+		fill(0,0,255)
+		ellipse(pn[0],pn[1],w_sing_index_point,w_sing_index_point);
+	}
 }
 
-function rotAnClock(ang){
-	ang = ang + 90
-	Pi_x = parseInt(d/2 * sin(radians(ang)))
-	Pi_y = parseInt(d/2 * cos(radians(ang)))
-}
+
+
+
+
 
