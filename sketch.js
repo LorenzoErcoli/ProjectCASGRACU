@@ -4,7 +4,7 @@
 var dmr = 400;
 var w_point = 40
 
-var w_index_point = 5
+var w_index_point = 10
 var add_wPoint = 8
 
 var ang = 0
@@ -231,7 +231,9 @@ function indexPoint(){
 		}else{
 			fill(0,0,255)
 		}
-		ellipse(pn[0],pn[1],w_print_index_point,w_print_index_point);
+		ellipse(pn[0],pn[1],w_print_index_point,w_print_index_point)
+		fill(0,0,255)
+		ellipse(pn[0],pn[1],w_index_point,w_index_point);
 	}
 
 }
