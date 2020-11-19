@@ -5,8 +5,10 @@ var w_point = 40
 
 var ang = 0
 
-var speed =1.5
+var speed = 2
 let videoElement;
+
+var movement = 2
 
 function setup() {
 
@@ -20,9 +22,9 @@ function setup() {
 	P0 = [w/2,h/2]
 
 
-	p1 = [P0[0],P0[1]-d/2]
+	p1 = [P0[0],P0[1]+d/2]
 	p2 = [P0[0]+d/2,P0[1]] 
-	p3 = [P0[0],P0[1]+d/2]
+	p3 = [P0[0],P0[1]-d/2]
 	p4 = [P0[0]-d/2,P0[1]]
 
 	createCanvas(w,h);
@@ -34,7 +36,7 @@ function setup() {
 function draw() {
 
 	let sc = second();
-	console.log(sc)
+	// console.log(sc)
 	
 	var w = window.innerWidth;
 	var h = window.innerHeight;
@@ -45,10 +47,10 @@ function draw() {
 	P0 = [w/2,h/2]
 
 
-	p1 = [P0[0],P0[1]-d/2]
-	p2 = [P0[0]+d/2,P0[1]] 
-	p3 = [P0[0],P0[1]+d/2]
-	p4 = [P0[0]-d/2,P0[1]]
+	p1 = [parseInt(P0[0])     , parseInt(P0[1]-d/2)]
+	p2 = [parseInt(P0[0]+d/2), parseInt(P0[1])    ] 
+	p3 = [parseInt(P0[0])     , parseInt(P0[1]+d/2)]
+	p4 = [parseInt(P0[0]-d/2) , parseInt(P0[1])    ]
 
 	createCanvas(w,h);
 
@@ -66,45 +68,121 @@ function draw() {
 	ellipse(p4[0],p4[1],w_point,w_point);
 
 	fill(0,0,255)
-	ovalrotate(ang)
+	directionPoint()
+
 
 	ang = ang + speed
+	if (ang > 359){
+		ang = 0
+	}
 }
 
 
-function directionPoint(enter_stz,exit_stz){
+function directionPoint(){
 
-	//from-to//
-	///p1-p2///
-	///p2-p3///
-	///p3-p4///
-	///p4-p1///
-	///p1-p3///
-	///p3-p1///
-	///p2-p4///
-	///p4-p2///
-	///p1-p4///
-	///p4-p3///
-	///p3-p2///
-	///p2-p1///
+	switch (movement) {
+		case 1:
+		  rotClock(ang)
+		  break;
+		case 2:
+		  rotAnClock(ang);
+		  break;
+		case 3:
+		  lineMove();
+		}
+
+	pn = [parseInt(P0[0]+Pi_x),parseInt(P0[1]+Pi_y)]
+	ellipse(pn[0],pn[1],w_point,w_point);
+
+
+	///STANZA 1///
+
+	if (pn[1] == p1[1]){
+		console.log("p1")
+		console.log(ang)
+		movement = Math.floor(Math.random() * 3) + 1
+		if(movement == 1){
+			ang = 270
+		}
+		if(movement == 2){
+			ang = 90
+		}
+
+		form_stz = "stz1"
+	}
+
+	///STANZA 2///
+
+	if (pn[0] == p2[0]){
+		console.log("p2")
+		console.log(ang)
+		movement = Math.floor(Math.random() * 3) + 1
+		ang = 0
+
+
+		form_stz = "stz2"
+	}
+
+	///STANZA 3///
+
+	if (pn[1] == p3[1]){
+		console.log("p3")
+		console.log(ang)
+		movement = Math.floor(Math.random() * 3) + 1
+		if(movement == 1){
+			ang = 90
+		}if(movement == 2){
+			ang = 270
+		}
+
+		form_stz = "stz3"
+	}
+
+	///STANZA 4///
+
+	if (pn[0] == p4[0]){
+		console.log("p4")
+		console.log(ang)
+		movement = Math.floor(Math.random() * 3) + 1
+		ang = 180
+
+		form_stz = "stz4"
+	}
+
+
+
 
 }
 
-function ovalrotate(ang){
+function lineMove(){
 
-	Pi_x = d/2 * cos(radians(ang))
-	Pi_y = d/2 * sin(radians(ang))
-
-	ellipse(P0[0]+Pi_x,P0[1]+Pi_y,w_point,w_point);
+	if(form_stz == "stz2"){
+		Pi_x = Pi_x - speed
+		Pi_y = 0
+	}if(form_stz == "stz4"){
+		Pi_x = Pi_x + speed;
+		Pi_y = 0
+	}if(form_stz == "stz1"){
+		Pi_x = 0
+		Pi_y = Pi_y + speed
+	}if(form_stz == "stz3"){
+		Pi_x = 0
+		Pi_y = Pi_y - speed
+	}
 }
 
-function onVideoLoad() {
-  // The media will not play untill some explicitly triggered.
-  videoElement.autoplay(false);
-  videoElement.volume(0);
-  videoElement.size(100, 100);
+
+
+
+function rotClock(ang){
+
+	Pi_x = parseInt(d/2 * cos(radians(ang)))
+	Pi_y = parseInt(d/2 * sin(radians(ang)))
 }
 
-function mouseClicked() {
-  videoElement.play();
+function rotAnClock(ang){
+	ang = ang + 90
+	Pi_x = parseInt(d/2 * sin(radians(ang)))
+	Pi_y = parseInt(d/2 * cos(radians(ang)))
 }
+
