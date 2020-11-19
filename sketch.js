@@ -3,9 +3,9 @@
 var d = 400;
 var w_point = 40
 
-var w_index_point = 10
-var w_sing_index_point 
-var add_wPoint = 2
+var w_index_point = 5
+var add_wPoint = 8
+
 var ang = 0
 
 var speed = 1
@@ -192,17 +192,17 @@ function rotAnClock(ang){
 function lineMove(){
 
 	if(form_stz == "stz2"){
-		Pi_x = Pi_x - speed
+		Pi_x = Pi_x - speed*2
 		Pi_y = 0
 	}if(form_stz == "stz4"){
-		Pi_x = Pi_x + speed;
+		Pi_x = Pi_x + speed*2
 		Pi_y = 0
 	}if(form_stz == "stz1"){
 		Pi_x = 0
-		Pi_y = Pi_y + speed
+		Pi_y = Pi_y + speed*2
 	}if(form_stz == "stz3"){
 		Pi_x = 0
-		Pi_y = Pi_y - speed
+		Pi_y = Pi_y - speed*2
 	}
 }
 
@@ -214,10 +214,17 @@ function indexPoint(){
 	n_pathStz = path_stz.length
 
 	for(i=0; i <n_pathStz; i++){
-		w_sing_index_point = w_index_point + add_wPoint*i
+		w_total_index_point = w_index_point + add_wPoint*n_pathStz;
+		w_print_index_point = w_total_index_point - add_wPoint*i
+
+		stroke(0,255,0)
+		strokeWeight(2)
 		fill(0,0,255)
-		ellipse(pn[0],pn[1],w_sing_index_point,w_sing_index_point);
+		ellipse(pn[0],pn[1],w_print_index_point,w_print_index_point);
+		console.log(w_print_index_point)
 	}
+
+	console.log(w_print_index_point)
 }
 
 
