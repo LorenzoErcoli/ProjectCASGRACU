@@ -24,9 +24,6 @@ function setup() {
 	var w = window.innerWidth;
 	var h = window.innerHeight;
 
-
-	
-	console.log("stanza1_set")
 	setup_Vornoi()
 
 
@@ -230,7 +227,6 @@ function indexPoint(){
 		strokeWeight(2)
 		fill(0,0,255)
 		ellipse(pn[0],pn[1],w_print_index_point,w_print_index_point);
-		console.log("cazzo")
 	}
 
 }
