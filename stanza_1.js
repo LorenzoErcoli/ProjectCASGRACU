@@ -1,11 +1,13 @@
 p5.disableFriendlyErrors = true;
 
-const NUM = 50;
+
+
+
+const NUM = 10;
 const HALFPI = Math.PI*0.5
 const RAND = (min, max) => Math.random() * (max - min) + min //d3.randomUniform
 
 let W, H, polygons, voronoi, positions, velocities, colors;
-
 
 
 

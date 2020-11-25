@@ -1,10 +1,10 @@
 console.log("ciao")
 
-var dmr_molla = 1000;
-var dimSera = 3;
+var dmr_molla = 800;
+var dimSera = 10;
 var w_point = 1;
 var ang_molla = 0;
-var speed_molla = 0.6;
+var speed_molla = 0.1;
 var spost = 0;
 
 
@@ -32,17 +32,18 @@ function draw_molla(){
 	rectMode(CENTER)
 	rotClock(ang_molla)
 
-	graphics.camera(700, 100, 1000, 0, 1, 0, 0, 1, 0);
+	graphics.camera(400, 200, 200, 1, 0, 0, 1, 0, 0);
 
 	pn = [(P0[0]+Pi_x),(P0[1]+Pi_y)]
 	graphics.stroke(0)
 	graphics.translate(P0[0]-pn[0], P0[1]-pn[1], -spost)
+	graphics.strokeWeight(0.5)
 	graphics.sphere(dimSera)
 	// ellipse(pn[0],pn[1],w_point,)
 
 	ang_molla = ang_molla + speed_molla
 
-	spost = spost + 0.03
+	spost = spost + 0.01
 
 
 	image(graphics, 0, 0)

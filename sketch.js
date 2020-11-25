@@ -19,6 +19,13 @@ path_stz = []
 
 var stanza 
 vornoi = false
+var speed = 0.01;
+
+
+
+var individuo = 2
+var velocità
+var prospettiva
 
 
 
@@ -27,6 +34,7 @@ function setup() {
 	
 	var w = window.innerWidth;
 	var h = window.innerHeight;
+
 
 	setup_Vornoi();
 	setup_molla();
@@ -40,9 +48,6 @@ function setup() {
 
 
 function draw() {
-
-	speed = 0.05;
-
 
 	if(stanza == 1){
 		console.log("stanza1_draw")
@@ -92,11 +97,14 @@ function drawStanze(){
 
 
 	if (stanza == 2){
-		fill(0);
+		fill(255);
+
 	}else{
 		fill(255)
 	}
-	noStroke()
+	strokeWeight(2)
+	stroke(0)
+	
 	// ellipse(P0[0],P0[1],w_point,w_point);
 
 	
@@ -219,7 +227,7 @@ function rotAnClock(ang){
 function lineMove(){
 
 	if(form_stz == "stz2"){
-		Pi_x = Pi_x - speed*10
+		Pi_x = Pi_x - speed*2
 		Pi_y = 0
 	}if(form_stz == "stz4"){
 		Pi_x = Pi_x + speed*2
@@ -270,5 +278,10 @@ function residui(){
 }
 }
 
+
+function residui_variabili(){
+
+
+}
 
 
