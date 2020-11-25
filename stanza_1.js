@@ -12,7 +12,6 @@ let W, H, polygons, voronoi, positions, velocities, colors;
 function setup_Vornoi() {
   ctx = canvas.getContext("2d");
   [W, H] = [windowWidth, windowHeight];
-  fill(255, 204, 0);
   createCanvas(W, H);
 
   //frameRate(1000);
@@ -66,7 +65,7 @@ function draw_Vornoi() {
     
     // RENDER (cell)
     push()
-    fill(250,100,0)
+    fill(0)
     noStroke()
     beginShape();
     rverts.map(v => vertex(v.x, v.y));
@@ -74,7 +73,7 @@ function draw_Vornoi() {
     pop()
     
     // RENDER (site)
-    stroke(0, 0, 0);
+    stroke(255);
     strokeWeight(10);
     point(pos[0], pos[1])
     

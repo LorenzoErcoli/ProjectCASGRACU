@@ -1,16 +1,17 @@
 //// VIZ MECCANISMO NAVIGAZIONE ////
 
 
+
 var dmr = 400;
 var w_point = 40
 
-var w_index_point = 12
+var w_index_point = 30
 var add_wPoint = 12
 
 var ang = 0
 
-var speed = 0.5
-let videoElement;
+var random_speed
+
 
 var movement = 2
 
@@ -19,31 +20,41 @@ path_stz = []
 var stanza 
 vornoi = false
 
+
+
+
 function setup() {
 	
 	var w = window.innerWidth;
 	var h = window.innerHeight;
 
-	setup_Vornoi()
-
+	setup_Vornoi();
+	setup_molla();
 
 	createCanvas(w,h);
+
 	
 }
 
+
+
+
 function draw() {
+
+	speed = 0.05;
+
 
 	if(stanza == 1){
 		console.log("stanza1_draw")
 		draw_Vornoi()
+	}else if(stanza == 2){
+		console.log("stanza3_draw")
+		draw_molla()
 	}else{
 		background(0)
 	}
-
 	drawStanze()
 
-
-	fill(0,0,255)
 	
 	directionPoint()
 	stateStz()
@@ -56,6 +67,9 @@ function draw() {
 	}
 
 }
+
+
+
 
 
 
@@ -77,8 +91,11 @@ function drawStanze(){
 	
 
 
-
-	fill(0,255,0);
+	if (stanza == 2){
+		fill(0);
+	}else{
+		fill(255)
+	}
 	noStroke()
 	// ellipse(P0[0],P0[1],w_point,w_point);
 
@@ -130,6 +147,7 @@ function stateStz(){
 		stanza = 1
 		form_stz = "stz1"
 		path_stz.push(form_stz);
+		random_speed = Math.floor(Math.random() * 100)*0.05
 	}
 
 	///STANZA 2///
@@ -143,6 +161,7 @@ function stateStz(){
 		stanza = 2
 		form_stz = "stz2"
 		path_stz.push("stz2");
+		random_speed = Math.floor(Math.random() * 100)*0.05
 	}
 
 	///STANZA 3///
@@ -160,6 +179,7 @@ function stateStz(){
 		stanza = 3
 		form_stz = "stz3"
 		path_stz.push(form_stz);
+		random_speed = Math.floor(Math.random() * 100)*0.05
 	}
 
 	///STANZA 4///
@@ -173,6 +193,7 @@ function stateStz(){
 		stanza = 4
 		form_stz = "stz4"
 		path_stz.push(form_stz);
+		random_speed = Math.floor(Math.random() * 100)*0.05
 	}
 }
 
@@ -198,7 +219,7 @@ function rotAnClock(ang){
 function lineMove(){
 
 	if(form_stz == "stz2"){
-		Pi_x = Pi_x - speed*2
+		Pi_x = Pi_x - speed*10
 		Pi_y = 0
 	}if(form_stz == "stz4"){
 		Pi_x = Pi_x + speed*2
@@ -216,6 +237,17 @@ function lineMove(){
 
 
 function indexPoint(){
+
+
+fill(255,0,0)
+ellipse(pn[0],pn[1],w_index_point,w_index_point)
+
+}
+
+
+
+
+function residui(){
 
 	n_pathStz = path_stz.length
 
@@ -235,14 +267,8 @@ function indexPoint(){
 			stroke(255,0,255)
 		}
 		ellipse(pn[0],pn[1],w_print_index_point,w_print_index_point)
-		// fill(0,0,255)
-		// ellipse(pn[0],pn[1],w_index_point,w_index_point);
-	}
-
 }
-
-
-
+}
 
 
 
