@@ -18,17 +18,21 @@ var movement = 2
 path_stz = []
 
 var stanza 
-vornoi = false
-var speed = 0.01;
-
-
+var speed = 0.1;
 
 var individuo = 2
 var velocità
 var prospettiva
 
 
+var vel_varGlobal = 0
+var prosp_varGlobal = 0
+var index_varGlobal = 0
 
+
+
+
+console.log(pn_molla_start)
 
 function setup() {
 	
@@ -38,6 +42,7 @@ function setup() {
 
 	setup_Vornoi();
 	setup_molla();
+	setup_zoo();
 
 	createCanvas(w,h);
 
@@ -50,12 +55,15 @@ function setup() {
 function draw() {
 
 	if(stanza == 1){
-		console.log("stanza1_draw")
+		// console.log("stanza1_draw")
 		draw_Vornoi()
 	}else if(stanza == 2){
-		console.log("stanza3_draw")
-		draw_molla()
+		draw_molla(prosp_varGlobal)
+	}else if(stanza == 3){
+		// console.log("stanza2_draw")
+		draw_zoo()
 	}else{
+		// console.log("stanza4_draw")
 		background(0)
 	}
 	drawStanze()
@@ -142,7 +150,7 @@ function stateStz(){
 		///STANZA 1///
 
 	if (pn[1] == p_s1[1]){
-		// console.log("p_s1")
+		console.log("p_s1")
 		// console.log(ang)
 		movement = Math.floor(Math.random() * 3) + 1
 		if(movement == 1){
@@ -155,7 +163,6 @@ function stateStz(){
 		stanza = 1
 		form_stz = "stz1"
 		path_stz.push(form_stz);
-		random_speed = Math.floor(Math.random() * 100)*0.05
 	}
 
 	///STANZA 2///
@@ -169,7 +176,7 @@ function stateStz(){
 		stanza = 2
 		form_stz = "stz2"
 		path_stz.push("stz2");
-		random_speed = Math.floor(Math.random() * 100)*0.05
+		set_variable()
 	}
 
 	///STANZA 3///
@@ -187,7 +194,7 @@ function stateStz(){
 		stanza = 3
 		form_stz = "stz3"
 		path_stz.push(form_stz);
-		random_speed = Math.floor(Math.random() * 100)*0.05
+
 	}
 
 	///STANZA 4///
@@ -201,7 +208,6 @@ function stateStz(){
 		stanza = 4
 		form_stz = "stz4"
 		path_stz.push(form_stz);
-		random_speed = Math.floor(Math.random() * 100)*0.05
 	}
 }
 
@@ -226,7 +232,9 @@ function rotAnClock(ang){
 
 function lineMove(){
 
+	
 	if(form_stz == "stz2"){
+		console.log("a")
 		Pi_x = Pi_x - speed*2
 		Pi_y = 0
 	}if(form_stz == "stz4"){
@@ -279,9 +287,9 @@ function residui(){
 }
 
 
-function residui_variabili(){
+function set_variable(){
 
-
+	prosp_varGlobal = random(500)
+	console.log(prosp_varGlobal)
 }
-
 
