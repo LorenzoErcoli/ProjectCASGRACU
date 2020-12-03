@@ -1,14 +1,8 @@
 p5.disableFriendlyErrors = true;
 
-
-
-
-const NUM = 10;
 const HALFPI = Math.PI*0.5
 const RAND = (min, max) => Math.random() * (max - min) + min //d3.randomUniform
-
 let W, H, polygons, voronoi, positions, velocities, colors;
-
 
 
 function setup_Vornoi() {
@@ -38,6 +32,7 @@ function setup_Vornoi() {
 
 
 function draw_Vornoi() {
+
   //background('#666')
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   

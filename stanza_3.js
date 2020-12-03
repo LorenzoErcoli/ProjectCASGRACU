@@ -27,6 +27,10 @@ function setup_zoo(){
 
   var w = window.innerWidth;
   var h = window.innerHeight;
+
+  element = random(2)
+  console.log(element)
+
   
 	graphics_stz3  = createGraphics(w,h,WEBGL)
   graphics_stz2  = createGraphics(w,h)

@@ -11,6 +11,9 @@ var inc = 1
 pn_molla_start = [0,0] 
 pn_molla = pn_molla_start
 
+
+
+
 var w = window.innerWidth;
 var h = window.innerHeight;
 P0_molla = [w/2,h/2]
@@ -24,7 +27,6 @@ function setup_molla(){
 	rotClock(ang_molla)
 	prosp = random(-500, 500)
 
-
 }
 
 function draw_molla(){	
@@ -35,19 +37,18 @@ function draw_molla(){
 
 	// fill(0)
 	rectMode(CENTER)
-	console.log(ang_molla)
 	rotClock_molla(ang_molla)
 
 	pn_molla = [(P0_molla[0]+Pi_x_molla),(P0_molla[1]+Pi_y_molla)]
 	
 	
 
-	graphics.camera(prosp, 0, prosp, 0, 1, 0, 0, 1, 0);
-
-	
+	graphics.camera(prosp, 0, prosp, 0, 1, 0, 0, 1, 0);	
 	graphics.stroke(0)
 	graphics.translate(P0_molla[0]-pn_molla[0], P0_molla[1]-pn_molla[1], -spost_molla)
 	graphics.strokeWeight(0.5)
+
+
 	graphics.sphere(dimSera_molla)
 	// ellipse(pn_molla[0],pn_molla[1],w_point_molla,)
 

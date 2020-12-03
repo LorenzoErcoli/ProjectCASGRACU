@@ -1,6 +1,6 @@
 //// VIZ MECCANISMO NAVIGAZIONE ////
 
-
+let NUM = 3;
 
 var dmr = 400;
 var w_point = 40
@@ -30,9 +30,10 @@ var prosp_varGlobal = 0
 var index_varGlobal = 0
 
 
+var change_var = false
 
+var num_var = 2
 
-console.log(pn_molla_start)
 
 function setup() {
 	
@@ -40,7 +41,7 @@ function setup() {
 	var h = window.innerHeight;
 
 
-	setup_Vornoi();
+	// setup_Vornoi();
 	setup_molla();
 	setup_zoo();
 
@@ -58,7 +59,7 @@ function draw() {
 		// console.log("stanza1_draw")
 		draw_Vornoi()
 	}else if(stanza == 2){
-		draw_molla(prosp_varGlobal)
+		draw_molla()
 	}else if(stanza == 3){
 		// console.log("stanza2_draw")
 		draw_zoo()
@@ -150,7 +151,6 @@ function stateStz(){
 		///STANZA 1///
 
 	if (pn[1] == p_s1[1]){
-		console.log("p_s1")
 		// console.log(ang)
 		movement = Math.floor(Math.random() * 3) + 1
 		if(movement == 1){
@@ -163,6 +163,9 @@ function stateStz(){
 		stanza = 1
 		form_stz = "stz1"
 		path_stz.push(form_stz);
+
+		NUM = NUM + 1
+		setup_Vornoi()
 	}
 
 	///STANZA 2///
@@ -214,6 +217,9 @@ function stateStz(){
 
 
 
+
+
+
 function rotClock(ang){
 
 	Pi_x = parseInt(dmr/2 * cos(radians(ang)))
@@ -234,7 +240,6 @@ function lineMove(){
 
 	
 	if(form_stz == "stz2"){
-		console.log("a")
 		Pi_x = Pi_x - speed*2
 		Pi_y = 0
 	}if(form_stz == "stz4"){
@@ -290,6 +295,5 @@ function residui(){
 function set_variable(){
 
 	prosp_varGlobal = random(500)
-	console.log(prosp_varGlobal)
 }
 
