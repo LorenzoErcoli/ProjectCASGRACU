@@ -3,22 +3,29 @@
 let NUM = 3;
 
 var dmr = 400;
-var w_point = 40
+var w_point = 25
 
-var w_index_point = 30
+var w_index_point = 15
 var add_wPoint = 12
 
 var ang = 0
 
 var random_speed
 
+var nav_viz 
+var tviz_nav
+var state_nav_viz = false
+var tviz_NAV = 110
+
 
 var movement = 2
 
 path_stz = []
 
+
+
 var stanza 
-var speed = 0.1;
+var speed = 0.05;
 
 var individuo = 2
 var velocità
@@ -30,19 +37,23 @@ var prosp_varGlobal = 0
 var index_varGlobal = 0
 
 
+
 var change_var = false
 
 var num_var = 2
 
 
 function setup() {
+
 	
 	var w = window.innerWidth;
 	var h = window.innerHeight;
+	
+
 
 
 	// setup_Vornoi();
-	setup_molla();
+	// setup_molla();
 	setup_zoo();
 
 	createCanvas(w,h);
@@ -51,43 +62,77 @@ function setup() {
 }
 
 
-
-
 function draw() {
+
+
+	rand_nav_viz = int(random(0,900))
+	nav_viz = int(random(0,900))
 
 	if(stanza == 1){
 		// console.log("stanza1_draw")
 		draw_Vornoi()
-	}else if(stanza == 2){
+	}else if(stanza == 2
+		){
 		draw_molla()
 	}else if(stanza == 3){
 		// console.log("stanza2_draw")
 		draw_zoo()
-	}else{
+	}else if (stanza == 4){
+        background(100)
+		textSize(100);
+		fill(0, 102, 153);
+		text('stanza RIFF', 100, 600);
 		// console.log("stanza4_draw")
-		background(0)
+
 	}
-	drawStanze()
+
+
+	setStanze()
 
 	
 	directionPoint()
 	stateStz()
-	indexPoint()
 
+	viz_Nav()
+
+	
+	tviz_nav = tviz_nav +1
 
 	ang = ang + speed
 	if (ang > 359){
 		ang = 0
 	}
 
+
+
+}
+
+
+function viz_Nav(){
+
+	if (nav_viz == rand_nav_viz){
+		state_nav_viz = true
+		tviz_nav = 0
+	}
+
+	if (state_nav_viz == true){
+
+		background(0)
+		console.log("viz_nav")
+		drawNav()
+
+		if (tviz_nav == tviz_NAV){
+		state_nav_viz = false
+		}
+		
+
+	}
 }
 
 
 
 
-
-
-function drawStanze(){
+function setStanze(){
 
 	var w = window.innerWidth;
 	var h = window.innerHeight;
@@ -117,13 +162,23 @@ function drawStanze(){
 	// ellipse(P0[0],P0[1],w_point,w_point);
 
 	
+	
+
+}
+
+
+
+function drawNav(){
+
 	ellipse(p_s1[0],p_s1[1],w_point,w_point);
 	ellipse(p_s2[0],p_s2[1],w_point,w_point);
 	ellipse(p_s3[0],p_s3[1],w_point,w_point);
 	ellipse(p_s4[0],p_s4[1],w_point,w_point);
 
-}
+	fill(255,0,0)
+	ellipse(pn[0],pn[1],w_index_point,w_index_point)
 
+}
 
 
 function directionPoint(){
@@ -180,6 +235,8 @@ function stateStz(){
 		form_stz = "stz2"
 		path_stz.push("stz2");
 		set_variable()
+
+		setup_molla()
 	}
 
 	///STANZA 3///

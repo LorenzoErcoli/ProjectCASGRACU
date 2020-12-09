@@ -1,7 +1,5 @@
-console.log("zootropio-in")
-
 var temp_giro_zoo = 50
-var speed_zoo = 150
+var speed_zoo = 50
 
 var circo_zoo = temp_giro_zoo * speed_zoo
 var raggio_c = circo_zoo/(2*3.14)
@@ -29,7 +27,6 @@ function setup_zoo(){
   var h = window.innerHeight;
 
   element = random(2)
-  console.log(element)
 
   
 	graphics_stz3  = createGraphics(w,h,WEBGL)
@@ -43,7 +40,7 @@ function setup_zoo(){
 
 function draw_zoo(){
 
-  graphics_stz3.background(200)
+  graphics_stz3.background(150)
   graphics_stz3.camera(0,0,1,0,0,0,0,1,0)
   create_element()
 
