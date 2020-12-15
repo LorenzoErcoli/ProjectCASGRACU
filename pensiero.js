@@ -119,6 +119,8 @@ function stanza4(residuo,){}
 
 
 
+//// Sistema di accumulo, transizione, 
+
 
 
 

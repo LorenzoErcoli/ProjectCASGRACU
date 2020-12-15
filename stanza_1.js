@@ -3,9 +3,13 @@ p5.disableFriendlyErrors = true;
 const HALFPI = Math.PI*0.5
 const RAND = (min, max) => Math.random() * (max - min) + min //d3.randomUniform
 let W, H, polygons, voronoi, positions, velocities, colors;
-
+NUM = 1
 
 function setup_Vornoi() {
+
+  NUM = 1 + int(var_ind)
+
+
   ctx = canvas.getContext("2d");
   [W, H] = [windowWidth, windowHeight];
   createCanvas(W, H);
@@ -62,7 +66,7 @@ function draw_Vornoi() {
     
     // RENDER (cell)
     push()
-    fill(0)
+    fill(color_vorSpace)
     noStroke()
     beginShape();
     rverts.map(v => vertex(v.x, v.y));
@@ -70,7 +74,7 @@ function draw_Vornoi() {
     pop()
     
     // RENDER (site)
-    stroke(255);
+    stroke(color_vorPoint);
     strokeWeight(10);
     point(pos[0], pos[1])
     

@@ -25,22 +25,87 @@ path_stz = []
 
 
 var stanza 
-var speed = 0.05;
+var speed = 0.1;
 
 var individuo = 2
 var velocità
 var prospettiva
 
+/// VARIABILI ///
 
-var vel_varGlobal = 0
-var prosp_varGlobal = 0
-var index_varGlobal = 0
+var var_ind = 0
+var var_prosp = 0
+var var_vel = 0
+
+var delta_var_ind = 0
+var delta_var_prosp = 0
+var delta_var_vel = 0
+
+var min_var = -0.06
+var max_var = 0.07
+
 
 
 
 var change_var = false
 
 var num_var = 2
+
+
+
+
+
+//////////COLORI//////////////
+
+var list_color = ["#282923", "#74705d", "#a6e22c", "#67d8ef", "#f92472", "#f8f8f2", "#ac80ff", "#fd9621", "#e7db74"]
+
+// GRIGIO SCURO = #282923
+// GRIGIO CHIARO = #74705d
+// VERDE ACIDO = #a6e22c
+// CELESTE = #67d8ef
+// FUXIA = #f92472
+// BIANCO SPORCO = #f8f8f2
+// VIOLA = #ac80ff
+// ARANCIO = #fd9621
+// GIALLO CANARINO = #e7db74
+
+
+///NAVIGAZIONE///
+
+var color_navStzPoint = "#f8f8f2"
+var color_navIndexPoint = "#f92472"
+var color_navBackground = "#282923"
+
+
+///STZ 1 - VOORONOI///
+
+var color_vorPoint  = "#282923"
+var color_vorSpace = "#fd9621"
+var color_vorBack = "#282923"
+
+
+///STZ 2 - MOLLA///
+
+var color_molSph = "#ac80ff"
+var color_molBack = "#f8f8f2"
+
+
+///STZ 3 - ZOO///
+
+var color_zooElement = "#a6e22c"
+var color_zooBack = "#282923"
+
+
+///STZ 4 - RIFF///
+
+var color_riffList
+var color_riffBack
+var font_riffText
+var size_riffText
+
+
+
+/////////////////////////////
 
 
 function setup() {
@@ -50,10 +115,8 @@ function setup() {
 	var h = window.innerHeight;
 	
 
-
-
-	// setup_Vornoi();
-	// setup_molla();
+	setup_Vornoi();
+	setup_molla();
 	setup_zoo();
 
 	createCanvas(w,h);
@@ -78,10 +141,7 @@ function draw() {
 		// console.log("stanza2_draw")
 		draw_zoo()
 	}else if (stanza == 4){
-        background(100)
-		textSize(100);
-		fill(0, 102, 153);
-		text('stanza RIFF', 100, 600);
+		draw_mindRiff()
 		// console.log("stanza4_draw")
 
 	}
@@ -92,7 +152,7 @@ function draw() {
 	
 	directionPoint()
 	stateStz()
-
+	// status_var()
 	viz_Nav()
 
 	
@@ -117,8 +177,7 @@ function viz_Nav(){
 
 	if (state_nav_viz == true){
 
-		background(0)
-		console.log("viz_nav")
+		background(color_navBackground)
 		drawNav()
 
 		if (tviz_nav == tviz_NAV){
@@ -150,13 +209,10 @@ function setStanze(){
 	
 
 
-	if (stanza == 2){
-		fill(255);
 
-	}else{
-		fill(255)
-	}
-	strokeWeight(2)
+	fill(color_navStzPoint)
+
+	strokeWeight(0)
 	stroke(0)
 	
 	// ellipse(P0[0],P0[1],w_point,w_point);
@@ -175,8 +231,14 @@ function drawNav(){
 	ellipse(p_s3[0],p_s3[1],w_point,w_point);
 	ellipse(p_s4[0],p_s4[1],w_point,w_point);
 
-	fill(255,0,0)
+	fill(color_navIndexPoint)
 	ellipse(pn[0],pn[1],w_index_point,w_index_point)
+
+	textSize(13);
+	fill("#74705d");
+	text("var_ind:" + var_ind, 30, 800);
+	text("var_prsop: " + var_prosp, 30,780);
+	text("var_vel: " + var_vel, 30, 760);
 
 }
 
@@ -203,6 +265,8 @@ function directionPoint(){
 
 
 function stateStz(){
+
+
 		///STANZA 1///
 
 	if (pn[1] == p_s1[1]){
@@ -218,8 +282,7 @@ function stateStz(){
 		stanza = 1
 		form_stz = "stz1"
 		path_stz.push(form_stz);
-
-		NUM = NUM + 1
+		status_var()
 		setup_Vornoi()
 	}
 
@@ -234,9 +297,8 @@ function stateStz(){
 		stanza = 2
 		form_stz = "stz2"
 		path_stz.push("stz2");
-		set_variable()
-
 		setup_molla()
+		status_var()
 	}
 
 	///STANZA 3///
@@ -254,6 +316,8 @@ function stateStz(){
 		stanza = 3
 		form_stz = "stz3"
 		path_stz.push(form_stz);
+		setup_zoo();
+		status_var()
 
 	}
 
@@ -268,7 +332,14 @@ function stateStz(){
 		stanza = 4
 		form_stz = "stz4"
 		path_stz.push(form_stz);
+		setup_mindRiff()
+		status_var()
 	}
+
+
+
+	append_residuivariabili()
+	rang_variabile(min_var,max_var)
 }
 
 
@@ -349,8 +420,33 @@ function residui(){
 }
 
 
-function set_variable(){
 
-	prosp_varGlobal = random(500)
+
+function append_residuivariabili(){
+
+	if(stanza == 1){
+	var_ind = var_ind + delta_var_ind
+	}else if(stanza == 2){
+	var_prosp = var_prosp + delta_var_prosp
+	}else if(stanza == 3){
+	var_vel = var_vel + delta_var_vel
+	}
+
 }
+
+
+function status_var(){
+	console.log("var_ind - " + var_ind)
+	console.log("var_prsop - " + var_prosp)
+	console.log("var_vel - " +var_vel)
+}
+
+function rang_variabile(min_var,max_var){
+
+	delta_var_vel = random(min_var,max_var)
+	delta_var_ind = random(min_var,max_var)
+	delta_var_prosp = random(min_var,max_var)
+}
+
+
 
