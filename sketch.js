@@ -86,7 +86,7 @@ var color_vorBack = "#282923"
 
 ///STZ 2 - MOLLA///
 
-var color_molSph = "#ac80ff"
+var color_molSph = "#67d8ef"
 var color_molBack = "#282923"
 
 
