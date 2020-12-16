@@ -10,7 +10,7 @@ var ang_el = 0
 
 ///VARIABILI///
 
-var vel_zooElement_start = (Math.random() * 0.35) +0.05
+var vel_zooElement_start = (Math.random() * 0.35) +0.01
 var numero_elementi_start = 1
 var setup_element = []
 var list_setup_element = []
@@ -34,8 +34,7 @@ function setup_zoo(){
 
   var ang_el = 0
   numero_elementi =  numero_elementi_start + int(var_ind)
-  vel_zooElement =  vel_zooElement_start + (var_vel/100000);
-  console.log(var_vel/100000)
+  vel_zooElement =  vel_zooElement_start + (var_vel/1000);
 
 
 
@@ -68,10 +67,13 @@ function draw_zoo(){
 
   graphics_stz3.background(color_zooBack)
   graphics_stz3.camera(0,0,1,0,0,0,0,1,0)
+  graphics_stz3.stroke(0)
+  graphics_stz3.fill(color_zooElement)
 
   for (ne = 0; ne < numero_elementi; ne++){
   create_element()
   }
+  ang_el = (ang_el + vel_zooElement)
 
   // image(graphics_stz3, 0, 0)
   image(graphics_stz3, 0, 0)
@@ -85,7 +87,6 @@ function create_element(){
 
   select_element = list_setup_element[ne]
   push();
-  graphics_stz3.stroke(color_zooElement)
   rot_element(select_element[0],ang_el + (select_element[1]))
   graphics_stz3.translate(rot_x,rot_y, rot_z);
   // graphics_stz3.rotateY(frameCount * 0.02);
@@ -93,7 +94,7 @@ function create_element(){
   graphics_stz3.translate(-rot_x,-rot_y,-rot_z);
   pop();
 
- ang_el = ang_el + vel_zooElement
+ 
 
 }
 

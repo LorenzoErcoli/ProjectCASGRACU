@@ -1,10 +1,9 @@
-var dmr_molla = 400;
-var dimSera_molla = 10;
+var dmr_molla = 800;
+var dimSera_molla = 30;
 var w_point_molla = 1;
 var ang_molla = 0;
-var speed_molla_start = 0.25;
+var speed_molla_start = 0.5;
 var spost_molla = 0;
-var delta_spost_molla = speed_molla_start/10
 var run = true
 
 var point_list_molla = []
@@ -17,7 +16,7 @@ pn_molla = pn_molla_start
 var draw_save_molla = false
 
 ///
-start_prosp_x = Math.floor(Math.random() * 1000) 
+start_prosp_x = Math.floor(Math.random() * 1000) +1000
 start_prosp_y = Math.floor(Math.random() * 500)
 start_prosp_z = Math.floor(Math.random() * 600) 
 
@@ -34,8 +33,6 @@ let graphics;
 
 
 
-
-
 function setup_molla(){	
 
 	graphics = createGraphics(w,h,WEBGL);	
@@ -44,6 +41,7 @@ function setup_molla(){
 	rotClock(ang_molla)
 
 	speed_molla = speed_molla_start + (int(var_ind)/100);
+	delta_spost_molla = speed_molla/dimSera_molla*6
 
 	prosp_x = start_prosp_x + int(var_prosp)*10
 	prosp_y = start_prosp_y 
@@ -52,6 +50,14 @@ function setup_molla(){
 	if (point_list_molla.length > 0){
 		draw_save_molla = true
 	}
+
+	len_molla = point_list_molla.length
+	wiew_cam = point_list_molla[len_molla-1]
+
+	if (len_molla == 0){
+	 wiew_cam = [0,0,0]
+	}
+	console.log(wiew_cam)
 
 }
 
@@ -64,11 +70,10 @@ function draw_molla(){
 	rectMode(CENTER)
 	rotClock_molla(ang_molla)
 
-	
-	
 
-	graphics.camera(prosp_x, prosp_y, prosp_z, 0, 1, 0, 0, 1, 0);	
-	graphics.stroke(color_molSph)
+	graphics.camera(prosp_x, prosp_y, prosp_z, wiew_cam[0], 0, wiew_cam[2], 0, 1, 0);	
+	graphics.stroke(0)
+	graphics.fill(color_molSph);
 
 	if (draw_save_molla == true){
 		printSaveMolla()
@@ -76,7 +81,7 @@ function draw_molla(){
 		pn_molla = [(P0_molla[0]+Pi_x_molla),(P0_molla[1]+Pi_y_molla),(spost_molla)]
 		push();
 		graphics.translate(P0_molla[0]-pn_molla[0], P0_molla[1]-pn_molla[1], -pn_molla[2])
-		graphics.strokeWeight(0.5)
+		graphics.strokeWeight(0.1)
 		graphics.sphere(dimSera_molla)
 		pop();
 		saveMolla()	

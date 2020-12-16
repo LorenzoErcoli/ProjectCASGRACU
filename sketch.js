@@ -25,7 +25,7 @@ path_stz = []
 
 
 var stanza 
-var speed = 0.5;
+var speed = 0.05;
 
 var individuo = 2
 var velocità
@@ -41,7 +41,7 @@ var delta_var_ind = 0
 var delta_var_prosp = 0
 var delta_var_vel = 0
 
-var min_var = -0.06
+var min_var = -0.065
 var max_var = 0.07
 
 
@@ -134,8 +134,8 @@ function draw() {
 	if(stanza == 1){
 		// console.log("stanza1_draw")
 		draw_Vornoi()
-	}else if(stanza == 2
-		){
+	}else if(stanza == 2){
+
 		draw_molla()
 	}else if(stanza == 3){
 		// console.log("stanza2_draw")
@@ -234,6 +234,7 @@ function drawNav(){
 	fill(color_navIndexPoint)
 	ellipse(pn[0],pn[1],w_index_point,w_index_point)
 
+
 	textSize(13);
 	fill("#74705d");
 	text("var_ind:" + var_ind, 30, 800);
@@ -282,7 +283,7 @@ function stateStz(){
 		stanza = 1
 		form_stz = "stz1"
 		path_stz.push(form_stz);
-		status_var()
+		
 		setup_Vornoi()
 	}
 
@@ -298,7 +299,7 @@ function stateStz(){
 		form_stz = "stz2"
 		path_stz.push("stz2");
 		setup_molla()
-		status_var()
+		
 	}
 
 	///STANZA 3///
@@ -317,7 +318,7 @@ function stateStz(){
 		form_stz = "stz3"
 		path_stz.push(form_stz);
 		setup_zoo();
-		status_var()
+		
 
 	}
 
@@ -333,7 +334,7 @@ function stateStz(){
 		form_stz = "stz4"
 		path_stz.push(form_stz);
 		setup_mindRiff()
-		status_var()
+		
 	}
 
 
