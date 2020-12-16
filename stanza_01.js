@@ -58,7 +58,7 @@ function draw_Vornoi() {
   cRect = ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   graphics2d_stz1.background(color_vorBack)
 
-  graphics3d_stz1.background(255)
+  graphics3d_stz1.background(0)
 
   polygons = voronoi(positions).polygons()
 

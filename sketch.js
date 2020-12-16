@@ -74,26 +74,27 @@ var list_color = ["#282923", "#74705d", "#a6e22c", "#67d8ef", "#f92472", "#f8f8f
 
 var color_navStzPoint = "#f8f8f2"
 var color_navIndexPoint = "#f92472"
-var color_navBackground = "f8f8f2"
+var color_navBackground = "#282923"
 
 
 ///STZ 1 - VOORONOI///
 
 var color_vorPoint  = "#fd9621"
-var color_vorSpace = "#282923"
-var color_vorBack = "#282923"
+var color_vorSpace = "#000000"
+var color_vorBack = "#fd9621"
 
 
 ///STZ 2 - MOLLA///
 
 var color_molSph = "#67d8ef"
-var color_molBack = "#282923"
+var color_molStroke = "#282923"
+var color_molBack = "#000000"
 
 
 ///STZ 3 - ZOO///
 
 var color_zooElement = "#a6e22c"
-var color_zooBack = "#282923"
+var color_zooBack = "#000000"
 
 
 ///STZ 4 - RIFF///

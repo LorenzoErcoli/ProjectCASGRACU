@@ -6,6 +6,11 @@ var speed_molla_start = 0.5;
 var spost_molla = 0;
 var run = true
 
+
+
+var raggio_bin_molla = 1000
+var ang_bin_molla_start = 20
+
 var point_list_molla = []
 
 var inc = 1
@@ -16,6 +21,7 @@ pn_molla = pn_molla_start
 var draw_save_molla = false
 
 ///
+
 start_prosp_x = Math.floor(Math.random() * 1000) +1000
 start_prosp_y = Math.floor(Math.random() * 500)
 start_prosp_z = Math.floor(Math.random() * 600) 
@@ -41,23 +47,12 @@ function setup_molla(){
 	rotClock(ang_molla)
 
 	speed_molla = speed_molla_start + (int(var_ind)/100);
-	delta_spost_molla = speed_molla/dimSera_molla*6
+	delta_spost_molla = speed_molla/dimSera_molla*7
 
-	prosp_x = start_prosp_x + int(var_prosp)*10
-	prosp_y = start_prosp_y 
-	prosp_z = start_prosp_z + int(var_prosp)*10
+	ang_bin_molla = ang_bin_molla_start + var_prosp
 
-	if (point_list_molla.length > 0){
-		draw_save_molla = true
-	}
+	binarioProsp()
 
-	len_molla = point_list_molla.length
-	wiew_cam = point_list_molla[len_molla-1]
-
-	if (len_molla == 0){
-	 wiew_cam = [0,0,0]
-	}
-	console.log(wiew_cam)
 
 }
 
@@ -71,8 +66,8 @@ function draw_molla(){
 	rotClock_molla(ang_molla)
 
 
-	graphics.camera(prosp_x, prosp_y, prosp_z, wiew_cam[0], 0, wiew_cam[2], 0, 1, 0);	
-	graphics.stroke(0)
+	graphics.camera(wiew_cam[0]+Pi_bin_x, 0, wiew_cam[2]+Pi_bin_z, wiew_cam[0], 0, wiew_cam[2], 0, 1, 0);	
+	graphics.stroke(color_molStroke)
 	graphics.fill(color_molSph);
 
 	if (draw_save_molla == true){
@@ -133,6 +128,7 @@ function printSaveMolla(){
 		pn_sel_molla = [(set_points_select[0]),(set_points_select[1]),(set_points_select[2])]
 		push();
 		graphics.translate(pn_sel_molla[0], pn_sel_molla[1], pn_sel_molla[2])
+		graphics.strokeWeight(0.1)
 		graphics.sphere(dimSera_molla)
 		graphics.translate(-pn_sel_molla[0], -pn_sel_molla[1], -pn_sel_molla[2])
 		pop();
@@ -148,3 +144,33 @@ function printSaveMolla(){
 
 
 }
+
+function binarioProsp(){
+
+	if (point_list_molla.length > 0){
+	draw_save_molla = true
+	}
+
+	len_molla = point_list_molla.length
+	wiew_cam = point_list_molla[len_molla-1]
+
+	if (len_molla == 0){
+	 wiew_cam = [0,0,0]
+	}
+	console.log(wiew_cam)
+
+	Pi_bin_x = parseInt(raggio_bin_molla * cos(radians(ang_bin_molla)))
+	Pi_bin_z = parseInt(raggio_bin_molla * sin(radians(ang_bin_molla)))
+
+	console.log(Pi_bin_x)
+	console.log(Pi_bin_z)
+
+
+
+}
+
+
+
+
+
+

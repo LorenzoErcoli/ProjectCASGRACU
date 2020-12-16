@@ -21,6 +21,12 @@ var w = window.innerWidth;
 var h = window.innerHeight;
 
 
+////BINARIO VIZ
+
+raggio_bin_prosp_zoo = 4000
+ang_bin_zoo_start = 90
+
+
 /// SET-IMGGRAPHICS
 let graphics_stz3
 
@@ -35,6 +41,9 @@ function setup_zoo(){
   var ang_el = 0
   numero_elementi =  numero_elementi_start + int(var_ind)
   vel_zooElement =  vel_zooElement_start + (var_vel/1000);
+
+  ang_bin_zoo = ang_bin_zoo_start + (var_prosp)
+  binario_prosp_zoo()
 
 
 
@@ -55,6 +64,10 @@ function setup_zoo(){
 
   graphics_stz3  = createGraphics(w,h,WEBGL)
 
+
+ 
+  
+
   
   // console.log("new - " + vel_zooElement)
   // createCanvas(w,h,WEBGL)
@@ -66,7 +79,7 @@ function setup_zoo(){
 function draw_zoo(){
 
   graphics_stz3.background(color_zooBack)
-  graphics_stz3.camera(0,0,1,0,0,0,0,1,0)
+  graphics_stz3.camera(point_bin_zoo[0],point_bin_zoo[1],point_bin_zoo[2],0,0,0,0,1,0)
   graphics_stz3.stroke(0)
   graphics_stz3.fill(color_zooElement)
 
@@ -108,3 +121,21 @@ function rot_element(raggio,ang){
 
 }
 
+
+
+
+
+
+
+
+
+function binario_prosp_zoo(){
+
+  start_point_bin_zoo = [0,raggio_bin_prosp_zoo,1]
+
+  Pi_bin_zoo_y = parseInt(raggio_bin_prosp_zoo * sin(radians(ang_bin_zoo)))
+  Pi_bin_zoo_z = parseInt(raggio_bin_prosp_zoo * cos(radians(ang_bin_zoo)))
+
+  point_bin_zoo = [0,Pi_bin_zoo_y-raggio_bin_prosp_zoo,Pi_bin_zoo_z]
+
+}
