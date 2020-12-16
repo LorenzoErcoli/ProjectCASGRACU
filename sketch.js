@@ -25,7 +25,7 @@ path_stz = []
 
 
 var stanza 
-var speed = 0.1;
+var speed = 0.5;
 
 var individuo = 2
 var velocità
@@ -74,20 +74,20 @@ var list_color = ["#282923", "#74705d", "#a6e22c", "#67d8ef", "#f92472", "#f8f8f
 
 var color_navStzPoint = "#f8f8f2"
 var color_navIndexPoint = "#f92472"
-var color_navBackground = "#282923"
+var color_navBackground = "f8f8f2"
 
 
 ///STZ 1 - VOORONOI///
 
-var color_vorPoint  = "#282923"
-var color_vorSpace = "#fd9621"
+var color_vorPoint  = "#fd9621"
+var color_vorSpace = "#282923"
 var color_vorBack = "#282923"
 
 
 ///STZ 2 - MOLLA///
 
 var color_molSph = "#ac80ff"
-var color_molBack = "#f8f8f2"
+var color_molBack = "#282923"
 
 
 ///STZ 3 - ZOO///
