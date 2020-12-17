@@ -18,7 +18,6 @@ let graphics3d_stz1;
 function setup_Vornoi() {
 
 
-
   graphics2d_stz1 = createGraphics(w,h)
   graphics3d_stz1 = createGraphics(w,h,WEBGL)
 
@@ -55,10 +54,9 @@ function setup_Vornoi() {
 function draw_Vornoi() {
 
   //background('#666')
-  cRect = ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   graphics2d_stz1.background(color_vorBack)
-
   graphics3d_stz1.background(0)
+  cRect = ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
   polygons = voronoi(positions).polygons()
 

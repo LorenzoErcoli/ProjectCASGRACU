@@ -285,6 +285,7 @@ function stateStz(){
 		form_stz = "stz1"
 		path_stz.push(form_stz);
 		
+		capture_stateMindRiff()
 		setup_Vornoi()
 	}
 
@@ -299,7 +300,9 @@ function stateStz(){
 		stanza = 2
 		form_stz = "stz2"
 		path_stz.push("stz2");
-		setup_molla()
+		capture_stateMindRiff()
+		
+		setup_molla();
 		
 	}
 
@@ -318,6 +321,8 @@ function stateStz(){
 		stanza = 3
 		form_stz = "stz3"
 		path_stz.push(form_stz);
+		capture_stateMindRiff()
+		
 		setup_zoo();
 		
 
@@ -334,6 +339,9 @@ function stateStz(){
 		stanza = 4
 		form_stz = "stz4"
 		path_stz.push(form_stz);
+		capture_stateMindRiff()
+
+		
 		setup_mindRiff()
 		
 	}

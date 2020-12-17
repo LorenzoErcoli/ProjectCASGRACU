@@ -2,14 +2,14 @@ var dmr_molla = 800;
 var dimSera_molla = 30;
 var w_point_molla = 1;
 var ang_molla = 0;
-var speed_molla_start = 0.5;
+var speed_molla_start = 0.2;
 var spost_molla = 0;
 var run = true
 
 
 
-var raggio_bin_molla = 1000
-var ang_bin_molla_start = 20
+var raggio_bin_molla = 1300
+var ang_bin_molla_start = Math.random() * 360
 
 var point_list_molla = []
 
@@ -46,10 +46,17 @@ function setup_molla(){
 
 	rotClock(ang_molla)
 
-	speed_molla = speed_molla_start + (int(var_ind)/100);
-	delta_spost_molla = speed_molla/dimSera_molla*7
+
+
+	////VARIABILI////
+
+	speed_molla = speed_molla_start + (int(var_vel)/100);
+
+	delta_spost_molla = speed_molla/dimSera_molla*7 + (var_ind/1000)
 
 	ang_bin_molla = ang_bin_molla_start + var_prosp
+
+
 
 	binarioProsp()
 
@@ -157,13 +164,10 @@ function binarioProsp(){
 	if (len_molla == 0){
 	 wiew_cam = [0,0,0]
 	}
-	console.log(wiew_cam)
 
 	Pi_bin_x = parseInt(raggio_bin_molla * cos(radians(ang_bin_molla)))
 	Pi_bin_z = parseInt(raggio_bin_molla * sin(radians(ang_bin_molla)))
 
-	console.log(Pi_bin_x)
-	console.log(Pi_bin_z)
 
 
 

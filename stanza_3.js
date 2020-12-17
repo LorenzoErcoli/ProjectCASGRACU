@@ -35,6 +35,7 @@ let graphics_stz3
 
 function setup_zoo(){
 
+
   var w = window.innerWidth;
   var h = window.innerHeight;
 
